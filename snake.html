@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Super Snake</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+</head>
+<body>
+    <audio id="background-music" src="assets/sounds/background_music.mp3" loop preload="auto" volume="0.7"></audio>
+    <audio id="eat-sound" src="assets/sounds/eat.mp3" preload="auto" volume="1"></audio>
+    <audio id="wall-hit-sound" src="assets/sounds/wall_hit.mp3" preload="auto" volume="1"></audio>
+    <audio id="gameOver-sound" src="assets/sounds/game_over.mp3" preload="auto" volume="1"></audio>
+    <audio id="powerup-sound" src="assets/sounds/powerup.mp3" preload="auto" volume="1"></audio>
+    <audio id="level-up-sound" src="assets/sounds/level_up.mp3" preload="auto" volume="1"></audio>
+
+    <div class="game-container">
+        <div class="game-header">
+            <div class="score-board">
+                <p>Score: <span id="score">0</span></p>
+                <p>High Score: <span id="high-score">0</span></p>
+            </div>
+            <div class="volume-control">
+                <label for="master-volume">Volume:</label>
+                <input type="range" id="master-volume" min="0" max="1" step="0.01" value="0.7">
+            </div>
+        </div>
+
+        <canvas id="gameCanvas" width="600" height="600"></canvas>
+
+        <div class="overlay" id="start-screen">
+            <h1>Super Snake</h1>
+            <button id="start-game-btn" class="menu-btn">Start Game</button>
+            <button id="how-to-play-btn" class="menu-btn">How To Play</button>
+            <button id="view-high-scores-btn" class="menu-btn">High Scores</button> <div class="options">
+                <label>
+                    <input type="checkbox" id="wrap-around"> Wrap Around Edges
+                </label>
+                <label>
+                    <input type="checkbox" id="enable-obstacles"> Enable Obstacles
+                </label>
+                <label for="difficulty">Difficulty:</label>
+                <select id="difficulty">
+                    <option value="easy">Easy</option>
+                    <option value="medium" selected>Medium</option>
+                    <option value="hard">Hard</option>
+                    <option value="insane">Insane</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="overlay" id="how-to-play-screen">
+            <h2>How To Play</h2>
+            <p>Use Arrow Keys or D-Pad to move the snake.</p>
+            <p>Eat apples to grow and score points.</p>
+            <p>Avoid hitting walls or your own tail.</p>
+            <p>Collect power-ups:</p>
+            <ul>
+                <li>⚡ Speed: Makes you faster!</li>
+                <li>⭐ Multiplier: Doubles your score for a short time!</li>
+                <li>🧪 Shrink: Reduces your snake's length!</li>
+            </ul>
+            <p>Reach score thresholds to level up! Higher levels mean more speed and obstacles.</p>
+            <button id="back-to-main-menu-btn" class="menu-btn">Back to Main Menu</button>
+        </div>
+
+        <div class="overlay" id="game-over-screen">
+            <h2>Game Over!</h2>
+            <p>Your Score: <span id="final-score">0</span></p>
+            <p style="color: gold; display: none;">New High Score!</p> <button id="restart-game-btn" class="menu-btn">Restart Game</button>
+            <button id="go-to-main-menu-btn" class="menu-btn">Main Menu</button>
+        </div>
+
+        <div class="overlay" id="pause-screen">
+            <h2>Game Paused</h2>
+            <button id="resume-game-btn" class="menu-btn">Resume Game</button>
+            <button id="pause-to-main-menu-btn" class="menu-btn">Main Menu</button>
+        </div>
+
+        <div class="overlay" id="high-score-screen">
+            <h2>High Scores</h2>
+            <ol id="high-scores-list" class="high-scores-list">
+                </ol>
+            <button id="back-from-high-scores-btn" class="menu-btn">Back to Main Menu</button>
+        </div>
+
+        <div class="d-pad">
+            <button id="up-btn" class="d-pad-btn up-btn"></button>
+            <div class="d-pad-middle">
+                <button id="left-btn" class="d-pad-btn left-btn"></button>
+                <button id="right-btn" class="d-pad-btn right-btn"></button>
+            </div>
+            <button id="down-btn" class="d-pad-btn down-btn"></button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

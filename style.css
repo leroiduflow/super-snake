@@ -1,0 +1,382 @@
+/* General Body and Container Styles */
+body {
+    font-family: 'Press Start 2P', cursive;
+    background-color: #1a1a1a;
+    color: #eee;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    overflow: hidden; /* Prevent scrollbar from d-pad */
+    flex-direction: column;
+}
+
+.game-container {
+    border: 5px solid #4CAF50; /* Green border */
+    border-radius: 10px;
+    background-color: #333;
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    position: relative;
+    overflow: hidden; /* Ensure overlays don't bleed */
+}
+
+/* Game Header (Score, High Score, Volume) */
+.game-header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    padding: 0 10px;
+    box-sizing: border-box;
+}
+
+.score-board p {
+    margin: 0;
+    font-size: 1.2em;
+    color: #fff;
+    text-shadow: 0 0 5px #0f0;
+}
+
+.score-board span {
+    color: #4CAF50; /* Highlight score values */
+}
+
+.volume-control label {
+    font-size: 0.9em;
+    margin-right: 5px;
+}
+
+.volume-control input[type="range"] {
+    -webkit-appearance: none;
+    width: 80px;
+    height: 8px;
+    background: #555;
+    outline: none;
+    opacity: 0.7;
+    transition: opacity .2s;
+    border-radius: 5px;
+}
+
+.volume-control input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #4CAF50;
+    cursor: pointer;
+    box-shadow: 0 0 5px rgba(0, 255, 0, 0.7);
+}
+
+.volume-control input[type="range"]::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #4CAF50;
+    cursor: pointer;
+    box-shadow: 0 0 5px rgba(0, 255, 0, 0.7);
+}
+
+
+/* Canvas */
+#gameCanvas {
+    background-color: #000;
+    border: 2px solid #4CAF50;
+    display: block; /* Remove extra space below canvas */
+}
+
+/* Overlay Screens */
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.85);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #eee;
+    text-align: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    padding: 20px;
+    box-sizing: border-box;
+    z-index: 10; /* Ensure overlays are on top */
+}
+
+.overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.overlay h1 {
+    font-size: 3em;
+    color: #4CAF50;
+    text-shadow: 0 0 10px #0f0;
+    margin-bottom: 20px;
+}
+
+.overlay h2 {
+    font-size: 2em;
+    color: #4CAF50;
+    text-shadow: 0 0 8px #0f0;
+    margin-bottom: 15px;
+}
+
+.overlay p {
+    margin: 10px 0;
+    font-size: 1em;
+}
+
+.overlay ul {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0 20px;
+    font-size: 0.9em;
+}
+
+.overlay ul li {
+    margin-bottom: 5px;
+}
+
+.overlay ul li:before {
+    content: "• ";
+    color: #4CAF50;
+    font-weight: bold;
+    display: inline-block;
+    width: 1em;
+    margin-left: -1em;
+}
+
+
+/* Menu Buttons */
+.menu-btn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 25px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 1.1em;
+    text-transform: uppercase;
+    transition: background-color 0.2s, transform 0.1s, box-shadow 0.2s;
+    box-shadow: 0 4px 10px rgba(0, 255, 0, 0.3);
+}
+
+.menu-btn:hover {
+    background-color: #45a049;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0, 255, 0, 0.5);
+}
+
+.menu-btn:active {
+    background-color: #3e8e41;
+    transform: translateY(0);
+    box-shadow: 0 2px 5px rgba(0, 255, 0, 0.3);
+}
+
+/* Options (checkboxes, select) */
+.options {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-size: 0.9em;
+}
+
+.options label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.options input[type="checkbox"] {
+    margin-right: 10px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border: 2px solid #4CAF50;
+    border-radius: 3px;
+    outline: none;
+    cursor: pointer;
+    position: relative;
+    background-color: #222;
+}
+
+.options input[type="checkbox"]:checked {
+    background-color: #4CAF50;
+}
+
+.options input[type="checkbox"]:checked::before {
+    content: '\2713'; /* Checkmark character */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 14px;
+}
+
+.options select {
+    padding: 8px 10px;
+    border: 2px solid #4CAF50;
+    border-radius: 5px;
+    background-color: #222;
+    color: #eee;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.9em;
+    -webkit-appearance: none; /* Remove default arrow */
+    -moz-appearance: none;
+    appearance: none;
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23eeeeee%22%20d%3D%22M287%2C197.3L159.1%2C69.5c-3.1-3.1-8.2-3.1-11.3%2C0L5.3%2C197.3c-3.1%2C3.1-3.1%2C8.2%2C0%2C11.3l11.3%2C11.3c3.1%2C3.1%2C8.2%2C3.1%2C11.3%2C0l114.7-114.7l114.7%2C114.7c3.1%2C3.1%2C8.2%2C3.1%2C11.3%2C0l11.3-11.3C290.1%2C205.5%2C290.1%2C200.4%2C287%2C197.3z%22%2F%3E%3C%2Fsvg%3E'); /* Custom arrow */
+    background-repeat: no-repeat;
+    background-position: right 8px top 50%;
+    background-size: 12px auto;
+    padding-right: 30px; /* Space for the custom arrow */
+}
+
+
+/* D-Pad controls for mobile/touch */
+.d-pad {
+    display: grid;
+    grid-template-areas:
+        ". up ."
+        "left . right"
+        ". down .";
+    gap: 5px;
+    margin-top: 20px;
+    width: 150px; /* Adjust size as needed */
+    height: 150px;
+    transform: scale(0.9); /* Slightly shrink for mobile */
+    opacity: 0; /* Hide by default */
+    visibility: hidden;
+}
+
+.d-pad-btn {
+    background-color: #4CAF50;
+    border: 3px solid #3e8e41;
+    border-radius: 8px;
+    width: 50px; /* Size of individual buttons */
+    height: 50px;
+    cursor: pointer;
+    font-size: 0; /* Hide text */
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.1s, transform 0.05s;
+}
+
+.d-pad-btn:hover {
+    background-color: #45a049;
+}
+
+.d-pad-btn:active {
+    background-color: #3e8e41;
+    transform: scale(0.95);
+}
+
+/* Arrows for D-Pad buttons */
+.d-pad-btn::before {
+    content: '';
+    position: absolute;
+    border-color: white;
+    border-style: solid;
+    display: block;
+}
+
+.d-pad-btn.up-btn { grid-area: up; }
+.d-pad-btn.up-btn::before {
+    border-width: 0 10px 15px 10px;
+    border-bottom-color: white;
+    top: 10px;
+}
+
+.d-pad-btn.down-btn { grid-area: down; }
+.d-pad-btn.down-btn::before {
+    border-width: 15px 10px 0 10px;
+    border-top-color: white;
+    bottom: 10px;
+}
+
+.d-pad-btn.left-btn { grid-area: left; }
+.d-pad-btn.left-btn::before {
+    border-width: 10px 15px 10px 0;
+    border-right-color: white;
+    left: 10px;
+}
+
+.d-pad-btn.right-btn { grid-area: right; }
+.d-pad-btn.right-btn::before {
+    border-width: 10px 0 10px 15px;
+    border-left-color: white;
+    right: 10px;
+}
+
+/* Hide d-pad on larger screens if desired, or show always */
+@media (max-width: 768px) {
+    .d-pad {
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+
+/* NEW: High Score List Specific Styles */
+#high-score-screen {
+    /* Inherits .overlay styles */
+}
+
+.high-scores-list {
+    list-style: none; /* Remove default numbering */
+    padding: 0;
+    margin: 20px auto;
+    width: 80%; /* Adjust width as needed */
+    max-width: 400px;
+    font-size: 1.1em;
+    border: 2px solid #4CAF50;
+    border-radius: 8px;
+    background-color: #222;
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.4);
+}
+
+.high-scores-list li {
+    padding: 10px 15px;
+    border-bottom: 1px dashed #333;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.high-scores-list li:last-child {
+    border-bottom: none;
+}
+
+.high-scores-list li:nth-child(odd) {
+    background-color: #2a2a2a;
+}
+
+.high-scores-list li:nth-child(even) {
+    background-color: #1f1f1f;
+}
+
+/* Highlight top score in the list if desired */
+.high-scores-list li:first-child {
+    color: gold;
+    font-weight: bold;
+    font-size: 1.2em;
+    text-shadow: 0 0 5px orange;
+}
