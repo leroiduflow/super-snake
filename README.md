@@ -46,33 +46,8 @@ Bash
 
 python -m http.server 8000
 Then, open your browser and go to http://localhost:8000.
-Project Structure
-.
-├── assets/
-│   ├── images/
-│   │   ├── background.png
-│   │   ├── food_apple.png
-│   │   ├── obstacle.png
-│   │   ├── powerup_invincibility.png
-│   │   ├── powerup_multiplier.png
-│   │   ├── powerup_shrink.png
-│   │   ├── powerup_speed.png
-│   │   ├── snake_body.png
-│   │   ├── snake_head_down.png
-│   │   ├── snake_head_left.png
-│   │   ├── snake_head_right.png
-│   │   └── snake_head_up.png
-│   └── sounds/
-│       ├── background_music.mp3
-│       ├── eat.mp3
-│       ├── game_over.mp3
-│       ├── level_up.mp3
-│       ├── powerup.mp3
-│       └── wall_hit.mp3
-├── index.html       <-- Or snake.html if not renamed for GitHub Pages
-├── script.js
-├── style.css
-└── README.md
+
+
 Live Demo
 You can play Super Snake live on GitHub Pages here:
 https://leroiduflow.github.io/super-snake/
